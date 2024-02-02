@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import {
-  Button,
-  Divider,
-  Typography
-} from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 
 // TODO: pathが異なる場合があります。適宜修正してください。
 import type { TodoList } from "~/sample/TodoApp-02/App";
@@ -30,40 +26,38 @@ const StyledButtonWrapper = styled.div`
 `;
 
 type Props = {
-  setTodoList: React.Dispatch<React.SetStateAction<TodoList[]>>,
-  todoList: TodoList[]
-}
+  setTodoList: React.Dispatch<React.SetStateAction<TodoList[]>>;
+  todoList: TodoList[];
+};
 
-export const List: React.FC<Props> = ({
-  setTodoList,
-  todoList
-}) => {
+export const List: React.FC<Props> = ({ setTodoList, todoList }) => {
   const completedTodoItem = (id: string) => {
     const updateList = todoList.map((data) => {
-      if(data.id === id) {
+      if (data.id === id) {
         return {
           ...data,
-          isCompleted: !data.isCompleted
-        }
+          isCompleted: !data.isCompleted,
+        };
       }
       return data;
-    })
+    });
     setTodoList(updateList);
-  }
+  };
 
   const deleteTodoItem = (id: string) => {
     const updateList = todoList.filter((data) => data.id !== id);
     setTodoList(updateList);
-  }
+  };
 
   return (
     <StyledList>
-      {todoList.map(item => (
+      {todoList.map((item) => (
         <>
           <StyledListItem key={item.id}>
             <Typography
               sx={{
-                textDecoration: () => item.isCompleted ? "line-through" : "none",
+                textDecoration: () =>
+                  item.isCompleted ? "line-through" : "none",
               }}
             >
               {item.content}
@@ -81,7 +75,7 @@ export const List: React.FC<Props> = ({
                   boxShadow: "none",
                   "&:hover": {
                     backgroundColor: "#FF3700",
-                    boxShadow: "none"
+                    boxShadow: "none",
                   },
                 }}
               >
@@ -95,11 +89,15 @@ export const List: React.FC<Props> = ({
                 sx={{
                   minWidth: "57px",
                   height: "32px",
-                  backgroundColor: `${item.isCompleted ? "#C1C1C1" : "#008CFF"}`,
+                  backgroundColor: `${
+                    item.isCompleted ? "#C1C1C1" : "#008CFF"
+                  }`,
                   boxShadow: "none",
                   "&:hover": {
-                    backgroundColor: `${item.isCompleted ? "#C1C1C1" : "#008CFF"}`,
-                    boxShadow: "none"
+                    backgroundColor: `${
+                      item.isCompleted ? "#C1C1C1" : "#008CFF"
+                    }`,
+                    boxShadow: "none",
                   },
                 }}
               >
@@ -111,5 +109,5 @@ export const List: React.FC<Props> = ({
         </>
       ))}
     </StyledList>
-  )
-}
+  );
+};

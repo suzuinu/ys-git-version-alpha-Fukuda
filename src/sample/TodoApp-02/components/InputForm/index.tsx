@@ -15,29 +15,26 @@ const StyledForm = styled.form`
 `;
 
 type Props = {
-  setTodoList: React.Dispatch<React.SetStateAction<TodoList[]>>,
-  todoList: TodoList[]
+  setTodoList: React.Dispatch<React.SetStateAction<TodoList[]>>;
+  todoList: TodoList[];
 };
 
-export const InputForm: React.FC<Props> = ({
-  setTodoList,
-  todoList
-}) => {
+export const InputForm: React.FC<Props> = ({ setTodoList, todoList }) => {
   const [content, setContent] = React.useState("");
 
   const addTodoItem = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setContent('');
+    setContent("");
     setTodoList([
       ...todoList,
       {
         id: crypto.randomUUID(),
         content,
-        isCompleted: false
-      }
+        isCompleted: false,
+      },
     ]);
-  }
+  };
 
   return (
     <StyledForm onSubmit={(e) => addTodoItem(e)}>
@@ -65,12 +62,12 @@ export const InputForm: React.FC<Props> = ({
           boxShadow: "none",
           "&:hover": {
             backgroundColor: `${!content ? "#C1C1C1" : "#008CFF"}`,
-            boxShadow: "none"
+            boxShadow: "none",
           },
         }}
       >
         追加
       </Button>
     </StyledForm>
-  )
-}
+  );
+};
